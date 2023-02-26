@@ -1,5 +1,16 @@
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
-  </div>
+  <PageNav />
 </template>
+
+<script>
+import PageNav from "@/components/PageNav.vue";
+import { defineComponent } from "vue";
+
+export default defineComponent({
+  name: "AboutView",
+
+  components: { PageNav },
+  data: () => ({}),
+  mounted() {},
+});
+</script>

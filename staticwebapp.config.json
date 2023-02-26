@@ -1,0 +1,25 @@
+{
+    "routes": [
+        {
+          "route": "/home",
+          "statusCode": 200,
+          "redirect": "/",
+          "allowedRoles": ["anonymous", "authenticated"]
+        },
+        {
+          "route": "/*",
+          "allowedRoles": ["authenticated"]
+        }
+    ],
+    "responseOverrides": {
+      "401": {
+        "statusCode": 200,
+        "redirect": "/"
+      }
+    },
+    "navigationFallback": {
+        "rewrite": "/index.html",
+        "exclude": ["/images/*.{png,jpg,gif}", "/css/*"]
+    },
+    "trailingSlash": "auto"
+  }

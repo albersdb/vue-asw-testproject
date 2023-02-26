@@ -22,5 +22,15 @@ const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes,
 });
+router.beforeEach((to, from, next) => {
+  console.log(from);
+  console.log(to);
+  console.log(`Navigating to ${to.name} from ${from.name}`);
+  if (to === undefined) {
+    this.router.push({ path: "/" });
+  } else {
+    next();
+  }
+});
 
 export default router;
