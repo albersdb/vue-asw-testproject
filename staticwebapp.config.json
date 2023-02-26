@@ -1,15 +1,19 @@
 {
     "routes": [
-        {
-          "route": "/home",
-          "statusCode": 301,
-          "redirect": "/",
-          "allowedRoles": ["anonymous", "authenticated"]
-        },
-        {
-          "route": "/*",
-          "allowedRoles": ["authenticated"]
-        }
+      {
+        "route": "/",
+        "statusCode": 200,
+        "allowedRoles": ["anonymous", "authenticated"]
+      },
+      {
+        "route": "/home",
+        "statusCode": 200,
+        "allowedRoles": ["anonymous", "authenticated"]
+      },
+      {
+        "route": "/*",
+        "allowedRoles": ["authenticated"]
+      }
     ],
     "responseOverrides": {
       "401": {
