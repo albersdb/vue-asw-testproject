@@ -1,34 +1,65 @@
 <template>
-  <v-container>
-    <v-row>
-      <v-col v-for="(cell, index) in cells" :key="index" cols="4">
-        <v-card
-          class="text-center card"
-          color="primary"
-          @click="cellClicked(index)"
-          :disabled="!!cell || winner"
-        >
-          <v-card-text class="display-1">{{ cell }}</v-card-text>
-        </v-card>
-      </v-col>
-    </v-row>
-
-    <v-row v-if="winner">
+  <v-container class="v-col-xl-3 v-col-lg-4 v-col-md-6 v-col-sm-8 v-col-xs-4">
+    <v-row v-if="!winner && hasEmptyCells">
       <v-col>
-        <v-alert color="success" class="text-center">
-          {{ winner }} wins!
+        <v-alert color="info" class="text-center">
+          Next player: {{ currentPlayer }}
         </v-alert>
       </v-col>
     </v-row>
-
-    <v-row v-else-if="!winner && !hasEmptyCells">
+    <v-row v-if="winner">
       <v-col>
-        <v-alert color="info" class="text-center">Tie!</v-alert>
+        <v-alert color="success" class="text-center">
+          Player {{ winner }} Wins!
+        </v-alert>
       </v-col>
     </v-row>
-
+    <v-row v-else-if="!winner && !hasEmptyCells">
+      <v-col>
+        <v-alert color="warning" class="text-center">Tie!</v-alert>
+      </v-col>
+    </v-row>
+    <v-spacer class="mb-5"></v-spacer>
+    <v-row>
+      <v-col
+        v-for="(cell, index) in cells"
+        :key="index"
+        cols="4"
+        justify-content="center"
+      >
+        <v-card
+          class="card"
+          color="grey-darken-3"
+          @click="cellClicked(index)"
+          :disabled="!!cell || !!winner"
+          justify-content="center"
+        >
+          <v-card-item v-if="cell == 'X'">
+            <svg viewBox="0 0 100 100">
+              <line class="x-marker" x1="10" y1="10" x2="90" y2="90" />
+              <line class="x-marker" x1="10" y1="90" x2="90" y2="10" />
+            </svg>
+          </v-card-item>
+          <v-card-item v-else-if="cell == 'O'">
+            <svg viewBox="0 0 100 100">
+              <path
+                class="o-marker"
+                d="M 50,10
+                A 40,40 0 0,1 90,50
+                A 40,40 0 0,1 50,90
+                A 40,40 0 0,1 10,50
+                A 40,40 0 0,1 50,10 Z"
+              />
+            </svg>
+          </v-card-item>
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-spacer class="mb-5"></v-spacer>
     <v-row v-if="winner || !hasEmptyCells">
-      <v-btn @click="resetGame()">Reset Game</v-btn>
+      <v-col columns="12">
+        <v-btn color="info" class="" @click="resetGame()">Reset Game</v-btn>
+      </v-col>
     </v-row>
   </v-container>
 </template>
@@ -89,37 +120,21 @@ export default {
 </script>
 
 <style>
-.container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  height: 100vh;
-}
-
-.row {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-
 .card {
   cursor: pointer;
-  width: 100px;
-  height: 100px;
+  width: 110px;
+  height: 110px;
 }
 
-.card-text {
-  font-size: 4rem;
-  font-weight: bold;
+.x-marker {
+  stroke: #ff0000; /* red stroke color */
+  stroke-width: 10px; /* stroke width */
+  stroke-linecap: round; /* rounded line ends */
 }
 
-.success {
-  margin-top: 20px;
-}
-
-.info {
-  margin-top: 20px;
+.o-marker {
+  fill: none;
+  stroke: #33cc88;
+  stroke-width: 10px;
 }
 </style>
