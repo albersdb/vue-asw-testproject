@@ -8,14 +8,14 @@ import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default defineComponent({
-  name: "AboutView",
+  name: "GameView",
 
   components: { PageNav },
   data: () => ({}),
   computed: mapGetters(["currentCount"]),
   methods: mapActions(["setPageId"]),
   mounted() {
-    this.setPageId(2);
+    this.setPageId(3);
   },
 });
 </script>

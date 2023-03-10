@@ -5,6 +5,7 @@
 <script>
 import PageNav from "@/components/PageNav.vue";
 import { defineComponent } from "vue";
+import { useActions } from "vuex-composition-helpers/dist";
 
 export default defineComponent({
   name: "HomeView",
@@ -14,13 +15,12 @@ export default defineComponent({
   },
   data: () => ({
     drawer: false,
-    items: [
-      { id: 1, title: "Home", link: "/home" },
-      { id: 2, title: "About", link: "/about" },
-      { id: 3, title: "Games" },
-      { id: 4, title: "Random" },
-      { id: 5, title: "Links" },
-    ],
   }),
+  methods: {},
+  mounted() {
+    const { setPageId } = useActions(["setPageId"]);
+    setPageId(1);
+    console.log(`PageNav: ${this.$router.currentRoute.value.fullPath}`);
+  },
 });
 </script>

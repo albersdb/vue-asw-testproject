@@ -15,7 +15,11 @@ export default createStore({
       { id: 5, title: "Links", link: "/links" },
     ],
   },
-  getters: {},
+  getters: {
+    currentCount: (state) => () => {
+      return state.count;
+    },
+  },
   mutations: {
     INCREMENT_COUNT(state, payload) {
       state.count += payload;
@@ -25,7 +29,11 @@ export default createStore({
       var nav = state.navitems.find((i) => {
         return i.id == payload;
       });
+      console.log(nav);
       state.vuerouter.push({ path: nav.link, query: {} });
+      state.currentPageId = payload;
+    },
+    SET_PAGE_ID(state, payload) {
       state.currentPageId = payload;
     },
   },
@@ -36,6 +44,10 @@ export default createStore({
         context.commit("INCREMENT_COUNT", payload);
         console.log("Count Incremented!");
       }, 1000);
+    },
+    setPageId(context, payload) {
+      context.commit("SET_PAGE_ID", payload);
+      console.log("Page ID Set!");
     },
     changePage(context, payload) {
       console.log("changing page!");

@@ -29,7 +29,9 @@ const { changePage } = useActions(["changePage"]);
 
       <v-main style="height: 100vh">
         <HelloWorld v-if="currentPageId == 1" />
-        <HelloVue v-if="currentPageId != 1" />
+        <HelloVue v-else-if="currentPageId == 2" />
+        <TicTacToe v-else-if="currentPageId == 3" />
+        <HelloWorld v-else />
       </v-main>
     </v-layout>
   </v-card>
@@ -37,17 +39,17 @@ const { changePage } = useActions(["changePage"]);
 
 <script>
 import { defineComponent } from "vue";
-
 // Components
 import HelloWorld from "../components/HelloWorld.vue";
 import HelloVue from "../components/HelloVue.vue";
+import TicTacToe from "./TicTacToe.vue";
 
 export default defineComponent({
   name: "PageNav",
-
   components: {
     HelloWorld,
     HelloVue,
+    TicTacToe,
   },
   data: () => ({
     drawer: false,
