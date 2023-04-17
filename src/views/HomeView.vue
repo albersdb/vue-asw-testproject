@@ -1,17 +1,17 @@
 <template>
-  <PageNav></PageNav>
+  <HelloWorld />
 </template>
 
 <script>
-import PageNav from "@/components/PageNav.vue";
 import { defineComponent } from "vue";
 import { useActions } from "vuex-composition-helpers/dist";
+import HelloWorld from "../components/HelloWorld.vue";
 
 export default defineComponent({
   name: "HomeView",
 
   components: {
-    PageNav,
+    HelloWorld,
   },
   data: () => ({
     drawer: false,

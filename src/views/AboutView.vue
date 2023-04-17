@@ -1,16 +1,16 @@
 <template>
-  <PageNav />
+  <HelloVue />
 </template>
 
 <script>
-import PageNav from "@/components/PageNav.vue";
+import HelloVue from "@/components/HelloVue.vue";
 import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default defineComponent({
   name: "AboutView",
 
-  components: { PageNav },
+  components: { HelloVue },
   data: () => ({}),
   computed: mapGetters(["currentCount"]),
   methods: mapActions(["setPageId"]),

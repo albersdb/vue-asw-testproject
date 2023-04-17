@@ -1,16 +1,16 @@
 <template>
-  <PageNav />
+  <TicTacToe />
 </template>
 
 <script>
-import PageNav from "@/components/PageNav.vue";
+import TicTacToe from "@/components/TicTacToe.vue";
 import { defineComponent } from "vue";
 import { mapGetters, mapActions } from "vuex";
 
 export default defineComponent({
   name: "GameView",
 
-  components: { PageNav },
+  components: { TicTacToe },
   data: () => ({}),
   computed: mapGetters(["currentCount"]),
   methods: mapActions(["setPageId"]),
